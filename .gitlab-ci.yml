@@ -1,0 +1,77 @@
+stages:
+  - build
+  - upload
+  - release
+
+variables:
+  PACKAGE_VERSION: "0.1.0"
+  PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}/${PACKAGE_VERSION}"
+
+compile:
+  image: golang:1.19.2-alpine
+  stage: build
+  before_script:
+    - apk add make git
+  script:
+    - make
+  rules:
+    - changes:
+      - .gitlab-ci.yml
+      - ./assets/*
+      - ./**/*.go
+  artifacts:
+    name: "datatool"
+    paths:
+      - build/**/*
+    expire_in: 1 mos
+
+upload:
+  stage: upload
+  image: alpine/curl:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+  variables:
+    FOLDERS: linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+  before_script:
+    - apk add zip
+  script:
+    - |-
+      for folder in ${FOLDERS}
+      do
+        zip -r ${CI_PROJECT_NAME}-${folder}.zip \
+          build/${folder}/*
+        curl --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          --upload-file ${CI_PROJECT_NAME}-${folder}.zip \
+          "${PACKAGE_REGISTRY_URL}/${CI_PROJECT_NAME}-${folder}.zip"
+      done
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - job: upload
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_TAG
+  variables:
+    FOLDERS: linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+  script:
+    - |-
+      FORMAT=$(cat << JSON 
+      {"name": "PKG_FILE","url": "PKG_LINK"}
+      JSON
+      )
+    - |-
+      for folder in ${FOLDERS}
+      do
+        PAYLOAD="${FORMAT}"
+        PKG_FILE="${CI_PROJECT_NAME}-${folder}.zip"
+        PKG_LINK="${PACKAGE_REGISTRY_URL}/${PKG_FILE}"
+        PAYLOAD=$(echo ${PAYLOAD} | sed -e "s#PKG_FILE#${PKG_FILE}#g")
+        PAYLOAD=$(echo ${PAYLOAD} | sed -e "s#PKG_LINK#${PKG_LINK}#g")
+        export ARGUMENTS="${ARGUMENTS} --assets-link "${PAYLOAD}
+      done
+      echo $ARGUMENTS
+      release-cli create \
+        --name "Release $CI_COMMIT_TAG" \
+        --tag-name $CI_COMMIT_TAG "$ARGUMENTS"

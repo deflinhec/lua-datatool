@@ -1,0 +1,305 @@
+{
+    "language": "en-GB",
+    "messages": [
+        {
+            "id": "錯誤",
+            "message": "錯誤",
+            "translation": "Error"
+        },
+        {
+            "id": "副檔名不符",
+            "message": "副檔名不符",
+            "translation": "Non acceptable file extension"
+        },
+        {
+            "id": "無法載入 {Err}",
+            "message": "無法載入 {Err}",
+            "translation": "load failed: {Err}",
+            "placeholders": [
+                {
+                    "id": "Err",
+                    "string": "%[1]v",
+                    "type": "error",
+                    "underlyingType": "interface{Error() string}",
+                    "argNum": 1,
+                    "expr": "err"
+                }
+            ]
+        },
+        {
+            "id": "載入成功 {Abspath}",
+            "message": "載入成功 {Abspath}",
+            "translation": "load success {Abspath}",
+            "placeholders": [
+                {
+                    "id": "Abspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "abspath"
+                }
+            ]
+        },
+        {
+            "id": "儲存失敗: {Err}",
+            "message": "儲存失敗: {Err}",
+            "translation": "save failed {Err}",
+            "placeholders": [
+                {
+                    "id": "Err",
+                    "string": "%[1]v",
+                    "type": "error",
+                    "underlyingType": "interface{Error() string}",
+                    "argNum": 1,
+                    "expr": "err"
+                }
+            ]
+        },
+        {
+            "id": "訊息",
+            "message": "訊息",
+            "translation": "Message"
+        },
+        {
+            "id": "儲存成功",
+            "message": "儲存成功",
+            "translation": "save success"
+        },
+        {
+            "id": "另存新檔",
+            "message": "另存新檔",
+            "translation": "Save To"
+        },
+        {
+            "id": "儲存成功: {Abspath}",
+            "message": "儲存成功: {Abspath}",
+            "translation": "save success: {Abspath}",
+            "placeholders": [
+                {
+                    "id": "Abspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "abspath"
+                }
+            ]
+        },
+        {
+            "id": "檔案",
+            "message": "檔案",
+            "translation": "File"
+        },
+        {
+            "id": "開啟",
+            "message": "開啟",
+            "translation": "Open"
+        },
+        {
+            "id": "儲存",
+            "message": "儲存",
+            "translation": "Save"
+        },
+        {
+            "id": "編輯",
+            "message": "編輯",
+            "translation": "Edit"
+        },
+        {
+            "id": "設定",
+            "message": "設定",
+            "translation": "Setting"
+        },
+        {
+            "id": "語系",
+            "message": "語系",
+            "translation": "Language"
+        },
+        {
+            "id": "路徑：{Path}",
+            "message": "路徑：{Path}",
+            "translation": "Path：{Path}",
+            "placeholders": [
+                {
+                    "id": "Path",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Path()"
+                }
+            ]
+        },
+        {
+            "id": "模塊：{Module}",
+            "message": "模塊：{Module}",
+            "translation": "Module：{Module}",
+            "placeholders": [
+                {
+                    "id": "Module",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Module()"
+                }
+            ]
+        },
+        {
+            "id": "欄位：{Field}",
+            "message": "欄位：{Field}",
+            "translation": "Field：{Field}",
+            "placeholders": [
+                {
+                    "id": "Field",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Field()"
+                }
+            ]
+        },
+        {
+            "id": "不支援 {Extabspath}",
+            "message": "不支援 {Extabspath}",
+            "translation": "unsupport {Extabspath}",
+            "placeholders": [
+                {
+                    "id": "Extabspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "filepath.Ext(abspath)"
+                }
+            ]
+        },
+        {
+            "id": "無法載入數據 {Value}",
+            "message": "無法載入數據 {Value}",
+            "translation": "cannot load data from {Value}",
+            "placeholders": [
+                {
+                    "id": "Value",
+                    "string": "%[1]T",
+                    "type": "interface{}",
+                    "underlyingType": "interface{}",
+                    "argNum": 1,
+                    "expr": "value"
+                }
+            ]
+        },
+        {
+            "id": "沒有數據",
+            "message": "沒有數據",
+            "translation": "no data"
+        },
+        {
+            "id": "欄位名稱：",
+            "message": "欄位名稱：",
+            "translation": "Column Name"
+        },
+        {
+            "id": "數值類型：",
+            "message": "數值類型：",
+            "translation": "Value Type"
+        },
+        {
+            "id": "新增",
+            "message": "新增",
+            "translation": "Add"
+        },
+        {
+            "id": "警告",
+            "message": "警告",
+            "translation": "Warning"
+        },
+        {
+            "id": "欄位名稱不能為空",
+            "message": "欄位名稱不能為空",
+            "translation": "Column name cannot be empty"
+        },
+        {
+            "id": "欄位名稱重複",
+            "message": "欄位名稱重複",
+            "translation": "Column name duplicate"
+        },
+        {
+            "id": "取消",
+            "message": "取消",
+            "translation": "Cancel"
+        },
+        {
+            "id": "新增欄位",
+            "message": "新增欄位",
+            "translation": "Add Column"
+        },
+        {
+            "id": "移除",
+            "message": "移除",
+            "translation": "Remove"
+        },
+        {
+            "id": "移除欄位",
+            "message": "移除欄位",
+            "translation": "Remove Column"
+        },
+        {
+            "id": "索引序次：",
+            "message": "索引序次：",
+            "translation": "Index"
+        },
+        {
+            "id": "插入",
+            "message": "插入",
+            "translation": "Insert"
+        },
+        {
+            "id": "插入索引",
+            "message": "插入索引",
+            "translation": "Insert Index"
+        },
+        {
+            "id": "移除索引",
+            "message": "移除索引",
+            "translation": "Remove Index"
+        },
+        {
+            "id": "索引",
+            "message": "索引",
+            "translation": "Index"
+        },
+        {
+            "id": "檢索字元",
+            "message": "檢索字元",
+            "translation": "Search by text"
+        },
+        {
+            "id": "總計：{Indexes}",
+            "message": "總計：{Indexes}",
+            "translation": "Sum：{Indexes}",
+            "placeholders": [
+                {
+                    "id": "Indexes",
+                    "string": "%[1]v",
+                    "type": "int",
+                    "underlyingType": "int",
+                    "argNum": 1,
+                    "expr": "len(v.indexes)"
+                }
+            ]
+        },
+        {
+            "id": "數值",
+            "message": "數值",
+            "translation": "Value"
+        },
+        {
+            "id": "欄位",
+            "message": "欄位",
+            "translation": "Column"
+        }
+    ]
+}

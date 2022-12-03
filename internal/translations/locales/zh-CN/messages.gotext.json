@@ -1,0 +1,305 @@
+{
+    "language": "zh-CN",
+    "messages": [
+        {
+            "id": "錯誤",
+            "message": "錯誤",
+            "translation": "错误"
+        },
+        {
+            "id": "副檔名不符",
+            "message": "副檔名不符",
+            "translation": "副档名不符"
+        },
+        {
+            "id": "無法載入 {Err}",
+            "message": "無法載入 {Err}",
+            "translation": "无法载入 {Err}",
+            "placeholders": [
+                {
+                    "id": "Err",
+                    "string": "%[1]v",
+                    "type": "error",
+                    "underlyingType": "interface{Error() string}",
+                    "argNum": 1,
+                    "expr": "err"
+                }
+            ]
+        },
+        {
+            "id": "載入成功 {Abspath}",
+            "message": "載入成功 {Abspath}",
+            "translation": "载入成功 {Abspath}",
+            "placeholders": [
+                {
+                    "id": "Abspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "abspath"
+                }
+            ]
+        },
+        {
+            "id": "儲存失敗: {Err}",
+            "message": "儲存失敗: {Err}",
+            "translation": "储存失败: {Err}",
+            "placeholders": [
+                {
+                    "id": "Err",
+                    "string": "%[1]v",
+                    "type": "error",
+                    "underlyingType": "interface{Error() string}",
+                    "argNum": 1,
+                    "expr": "err"
+                }
+            ]
+        },
+        {
+            "id": "訊息",
+            "message": "訊息",
+            "translation": "讯息"
+        },
+        {
+            "id": "儲存成功",
+            "message": "儲存成功",
+            "translation": "储存成功"
+        },
+        {
+            "id": "另存新檔",
+            "message": "另存新檔",
+            "translation": "另存新档"
+        },
+        {
+            "id": "儲存成功: {Abspath}",
+            "message": "儲存成功: {Abspath}",
+            "translation": "储存成功: {Abspath}",
+            "placeholders": [
+                {
+                    "id": "Abspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "abspath"
+                }
+            ]
+        },
+        {
+            "id": "檔案",
+            "message": "檔案",
+            "translation": "档案"
+        },
+        {
+            "id": "開啟",
+            "message": "開啟",
+            "translation": "开启"
+        },
+        {
+            "id": "儲存",
+            "message": "儲存",
+            "translation": "储存"
+        },
+        {
+            "id": "編輯",
+            "message": "編輯",
+            "translation": "编辑"
+        },
+        {
+            "id": "設定",
+            "message": "設定",
+            "translation": "设定"
+        },
+        {
+            "id": "語系",
+            "message": "語系",
+            "translation": "语系"
+        },
+        {
+            "id": "路徑：{Path}",
+            "message": "路徑：{Path}",
+            "translation": "路径：{Path}",
+            "placeholders": [
+                {
+                    "id": "Path",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Path()"
+                }
+            ]
+        },
+        {
+            "id": "模塊：{Module}",
+            "message": "模塊：{Module}",
+            "translation": "模块：{Module}",
+            "placeholders": [
+                {
+                    "id": "Module",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Module()"
+                }
+            ]
+        },
+        {
+            "id": "欄位：{Field}",
+            "message": "欄位：{Field}",
+            "translation": "栏位：{Field}",
+            "placeholders": [
+                {
+                    "id": "Field",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "document.Field()"
+                }
+            ]
+        },
+        {
+            "id": "不支援 {Extabspath}",
+            "message": "不支援 {Extabspath}",
+            "translation": "不支援 {Extabspath}",
+            "placeholders": [
+                {
+                    "id": "Extabspath",
+                    "string": "%[1]v",
+                    "type": "string",
+                    "underlyingType": "string",
+                    "argNum": 1,
+                    "expr": "filepath.Ext(abspath)"
+                }
+            ]
+        },
+        {
+            "id": "無法載入數據 {Value}",
+            "message": "無法載入數據 {Value}",
+            "translation": "无法载入数据 {Value}",
+            "placeholders": [
+                {
+                    "id": "Value",
+                    "string": "%[1]T",
+                    "type": "interface{}",
+                    "underlyingType": "interface{}",
+                    "argNum": 1,
+                    "expr": "value"
+                }
+            ]
+        },
+        {
+            "id": "沒有數據",
+            "message": "沒有數據",
+            "translation": "没有数据"
+        },
+        {
+            "id": "欄位名稱：",
+            "message": "欄位名稱：",
+            "translation": "栏位名称："
+        },
+        {
+            "id": "數值類型：",
+            "message": "數值類型：",
+            "translation": "数值类型："
+        },
+        {
+            "id": "新增",
+            "message": "新增",
+            "translation": "新增"
+        },
+        {
+            "id": "警告",
+            "message": "警告",
+            "translation": "警告"
+        },
+        {
+            "id": "欄位名稱不能為空",
+            "message": "欄位名稱不能為空",
+            "translation": "栏位名称不能为空"
+        },
+        {
+            "id": "欄位名稱重複",
+            "message": "欄位名稱重複",
+            "translation": "栏位名称重复"
+        },
+        {
+            "id": "取消",
+            "message": "取消",
+            "translation": "取消"
+        },
+        {
+            "id": "新增欄位",
+            "message": "新增欄位",
+            "translation": "新增栏位"
+        },
+        {
+            "id": "移除",
+            "message": "移除",
+            "translation": "移除"
+        },
+        {
+            "id": "移除欄位",
+            "message": "移除欄位",
+            "translation": "移除栏位"
+        },
+        {
+            "id": "索引序次：",
+            "message": "索引序次：",
+            "translation": "索引序次："
+        },
+        {
+            "id": "插入",
+            "message": "插入",
+            "translation": "插入"
+        },
+        {
+            "id": "插入索引",
+            "message": "插入索引",
+            "translation": "插入索引"
+        },
+        {
+            "id": "移除索引",
+            "message": "移除索引",
+            "translation": "移除索引"
+        },
+        {
+            "id": "索引",
+            "message": "索引",
+            "translation": "索引"
+        },
+        {
+            "id": "檢索字元",
+            "message": "檢索字元",
+            "translation": "检索字元"
+        },
+        {
+            "id": "總計：{Indexes}",
+            "message": "總計：{Indexes}",
+            "translation": "总计：{Indexes}",
+            "placeholders": [
+                {
+                    "id": "Indexes",
+                    "string": "%[1]v",
+                    "type": "int",
+                    "underlyingType": "int",
+                    "argNum": 1,
+                    "expr": "len(v.indexes)"
+                }
+            ]
+        },
+        {
+            "id": "數值",
+            "message": "數值",
+            "translation": "数值"
+        },
+        {
+            "id": "欄位",
+            "message": "欄位",
+            "translation": "栏位"
+        }
+    ]
+}
