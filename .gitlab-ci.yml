@@ -20,7 +20,7 @@ compile:
       - ./assets/*
       - ./**/*.go
   artifacts:
-    name: "datatool"
+    name: ${CI_PROJECT_NAME}
     paths:
       - build/**/*
     expire_in: 1 mos
