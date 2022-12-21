@@ -23,9 +23,12 @@ var (
 var opts struct {
 	Dir string `long:"dir" short:"d" description:"lua directory" default:"."`
 
+	Ignores []string `long:"ignore" short:"i" description:"ingore specific file"`
+
 	Version func() `long:"version" short:"v" description:"檢視建置版號"`
 }
 
+var ignores map[string]bool
 var parser = flags.NewParser(&opts, flags.Default)
 
 func init() {
@@ -44,6 +47,10 @@ func init() {
 		default:
 			os.Exit(1)
 		}
+	}
+	ignores = make(map[string]bool)
+	for _, file := range opts.Ignores {
+		ignores[strings.TrimSpace(file)] = true
 	}
 }
 
@@ -76,6 +83,10 @@ func main() {
 		switch filepath.Ext(path) {
 		case ".lua":
 			abspath, _ := filepath.Abs(path)
+			name := filepath.Base(abspath)
+			if _, ok := ignores[name]; ok {
+				return nil
+			}
 			paths = append(paths, abspath)
 		}
 		return nil
