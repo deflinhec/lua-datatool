@@ -71,7 +71,6 @@ func onTranslate(lang string) {
 	l := language.MustParse(lang)
 	translator = message.NewPrinter(l)
 	editor.Translator(translator)
-	doc.Translator(translator)
 	g.Update()
 }
 

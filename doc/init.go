@@ -3,24 +3,9 @@ package doc
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"errors"
 	"fmt"
 	"path/filepath"
-
-	"golang.org/x/text/language"
-	"golang.org/x/text/message"
 )
-
-var translator *message.Printer
-
-func init() {
-	lang := language.MustParse("zh-TW")
-	translator = message.NewPrinter(lang)
-}
-
-func Translator(p *message.Printer) {
-	translator = p
-}
 
 type File interface {
 	Path() string
@@ -54,8 +39,7 @@ func Open(path string, opts ...Option) (File, error) {
 	case ".lua":
 		return &luaFile{fileInfo: info}, nil
 	}
-	return nil, errors.New(translator.Sprintf("不支援 %v",
-		filepath.Ext(abspath)))
+	return nil, fmt.Errorf("unsupport %v", filepath.Ext(abspath))
 }
 
 func Write(file File, value interface{}) error {

@@ -89,7 +89,7 @@ func luaLoadEntries(l *lua.LState) ([]string, error) {
 		}
 		return entries, nil
 	}
-	return []string{}, errors.New(translator.Sprintf("無法載入數據 %T", value))
+	return []string{}, fmt.Errorf("load failed %T", value)
 }
 
 func luaLoadValue(l *lua.LState, entry string) (interface{}, error) {
@@ -170,7 +170,7 @@ func (f *luaFile) read() (interface{}, error) {
 		return nil, err
 	}
 	if len(entries) == 0 {
-		return nil, errors.New(translator.Sprintf("沒有數據"))
+		return nil, errors.New("no entries")
 	}
 	value, err := luaLoadValue(l, entries[0])
 	if err != nil {
