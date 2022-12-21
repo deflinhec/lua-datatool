@@ -31,6 +31,8 @@ Lua 工具集
 
 - [索引鍵排序](#索引鍵排序)
 
+    排除重複索引鍵
+
 - [自動縮排、對齊](#自動縮排、對齊)
 
 |長參數|短參數|選填|說明|預設值|範例|
@@ -38,6 +40,7 @@ Lua 工具集
 |--help|-h|✔️| 幫助說明|-|-|
 |--version|-v|✔️| 檢視程序建置版號|-|-|
 |--dir|-d|✔️| 目標目錄|.|-|
+|--ignore|-i|✔️| 忽略特定檔案名稱|-|--ignore=init.lua|
 
 ---
 
@@ -92,7 +95,6 @@ md5sum = md5sum or {}
 md5sum.Field="cfcae4802f729e9fc167843df87c6a28"
 Field=
 { -- Module.Field
-    [-1]="string",
     [0]="string",
     [3]="string",
     [99]={ -- Module.Field[99]
@@ -100,6 +102,7 @@ Field=
         key1=1,
         key3=3,
     },
+    [-1]="string",
 }
 ```
 
