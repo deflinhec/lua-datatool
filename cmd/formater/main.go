@@ -25,6 +25,8 @@ var opts struct {
 
 	Ignores []string `long:"ignore" short:"i" description:"ingore specific file"`
 
+	DeepEqual bool `long:"deep-equal" description:"perform deep equal between before and after"`
+
 	Version func() `long:"version" short:"v" description:"檢視建置版號"`
 }
 
@@ -121,21 +123,23 @@ func main() {
 				log.Println("[warn]", file, err)
 				return
 			}
-			f, err = doc.Open(file)
-			if err != nil {
-				log.Println("[warn]", file, err)
-				return
-			}
-			b, err := doc.Read(f)
-			if err != nil {
-				log.Println("[warn]", file, err)
-				return
-			}
-			if !reflect.DeepEqual(a, b) {
-				if err = metadata(file, a, b); err != nil {
+			if opts.DeepEqual {
+				f, err = doc.Open(file)
+				if err != nil {
 					log.Println("[warn]", file, err)
+					return
 				}
-				log.Println("[warn]", file, "mismatch")
+				b, err := doc.Read(f)
+				if err != nil {
+					log.Println("[warn]", file, err)
+					return
+				}
+				if !reflect.DeepEqual(a, b) {
+					if err = metadata(file, a, b); err != nil {
+						log.Println("[warn]", file, err)
+					}
+					log.Println("[warn]", file, "mismatch")
+				}
 			}
 			log.Println("[done]", filepath.Base(file))
 		}()

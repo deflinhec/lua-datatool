@@ -87,11 +87,11 @@ Field=
                 },
             },
             unorder={ -- Module.Field[2].array.unorder
-                [-1]=true,
                 [10]=false,
                 [21]="text1",
                 [82]=1,
                 [88]=0.2,
+                [-1]=true,
             },
         },
         mixin={ -- Module.Field[2].mixin
