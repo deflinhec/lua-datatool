@@ -58,12 +58,12 @@ OSARCH_SPERATOR = $(word $2,$(subst -, ,$1))
 # Arch build options
 arch-%: export GOARCH=$(call OSARCH_SPERATOR,$*,1)
 arch-%: export CGO_ENABLED=1
-arch-%: fmt tidy
+arch-%: fmt assets tidy
 	go build -ldflags $(LDFLAGS) -o ./build/$(GOARCH)/ ./cmd/...
 
 # Local build options
 build: export CGO_ENABLED=1
-build: assets
+build: fmt assets tidy
 	go build -ldflags $(LDFLAGS) -o ./build/$(PLATFORM)/ ./cmd/...
 
 
