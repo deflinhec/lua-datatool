@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"hash/fnv"
 	"io/ioutil"
+	"log"
 	"math"
 	"os"
 	"path/filepath"
@@ -299,15 +300,29 @@ func luaFormat(value interface{}, depth int, trait string) string {
 	case map[string]interface{}:
 		ctx += "{" + fmt.Sprintf(" -- %v", trait) + "\n"
 		ctx += strings.Repeat(" ", depth+4)
-		keys := make(map[uint64]string)
-		idxs := make([]uint64, 0, len(value))
+		keys := make(map[uint32]string)
+		idxs := make([]uint32, 0, len(value))
 		for k := range value {
-			idx := uint64(hash(k))
+			idx := uint32(hash(k))
 			if strings.HasPrefix(k, "#") {
-				idx, _ = strconv.ParseUint(k[1:], 10, 32)
+				i, _ := strconv.Atoi(k[1:])
+				idx = uint32(i)
+			}
+			if _, ok := keys[idx]; ok {
+				break
 			}
 			idxs = append(idxs, idx)
 			keys[idx] = k
+		}
+		if len(keys) != len(value) {
+			log.Println("id hash collision")
+			keys = make(map[uint32]string)
+			idxs = make([]uint32, 0, len(value))
+			for k := range value {
+				idx := uint32(hash(k))
+				idxs = append(idxs, idx)
+				keys[idx] = k
+			}
 		}
 		sort.Slice(idxs, func(i, j int) bool { return idxs[i] < idxs[j] })
 		for _, i := range idxs {
