@@ -4,7 +4,7 @@ stages:
   - release
 
 variables:
-  PACKAGE_VERSION: "0.1.1"
+  PACKAGE_VERSION: "0.2.0"
   PACKAGE_REGISTRY_URL: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${CI_PROJECT_NAME}/${PACKAGE_VERSION}"
 
 compile:
