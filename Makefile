@@ -38,11 +38,12 @@ assets: go-bindata
 		-debug=$(if $(findstring debug,$(BUILDTAGS)),true,false) \
 		-ignore=assets.go -ignore=init.go assets/...
 
+ifeq ($(PLATFORM),darwin)
 osx-tool:
 	go get github.com/machinebox/appify
 	go install -a -v github.com/machinebox/appify
 
-osx-app: build
+osx-app: osx-tool build tidy
 	$(foreach file, $(wildcard $(CURDIR)/build/**/*), \
 		$(if $(shell grep ".app" "$(file)"), \
 			appify -version $(VERSION) -name $(notdir $(file)) \
@@ -51,6 +52,7 @@ osx-app: build
 			mv $(notdir $(file)).app $(dir $(file)); \
 		,) \
 	)
+endif
 
 # Sperate "linux-amd64" as GOOS and GOARCH
 OSARCH_SPERATOR = $(word $2,$(subst -, ,$1))

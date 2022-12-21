@@ -6,6 +6,7 @@ require (
 	github.com/AllenDang/giu v0.6.2
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/sqweek/dialog v0.0.0-20220809060634-e981b270ebbf
+	github.com/trubitsyn/go-zero-width v1.0.1
 	github.com/yuin/gopher-lua v0.0.0-20220504180219-658193537a64
 	golang.org/x/text v0.5.0
 )
@@ -19,7 +20,6 @@ require (
 	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20220320163800-277f93cfa958 // indirect
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8 // indirect
 	github.com/sahilm/fuzzy v0.1.0 // indirect
-	github.com/trubitsyn/go-zero-width v1.0.1 // indirect
 	golang.org/x/image v0.0.0-20220302094943-723b81ca9867 // indirect
 	golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect
 	gopkg.in/eapache/queue.v1 v1.1.0 // indirect
