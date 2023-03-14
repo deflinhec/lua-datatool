@@ -1,5 +1,5 @@
 # Define
-VERSION=0.3.0
+VERSION=0.3.1
 BUILD=$(shell git rev-parse HEAD)
 
 # Setup linker flags option for build that interoperate with variable names in src code
@@ -13,11 +13,20 @@ endif
 
 .PHONY: default build translate osx-app assets
 
+ifeq ($(PLATFORM),darwin)
+default: fmt clean build osx-app tidy
+else
+default: fmt clean build tidy
+endif
+
 fmt:
 	go fmt ./...
 
 tidy:
 	go mod tidy
+
+clean:
+	git clean -xdff build
 
 go-text:
 	go install golang.org/x/text/cmd/gotext@latest
@@ -44,12 +53,12 @@ osx-tool:
 	go get github.com/machinebox/appify
 	go install -a -v github.com/machinebox/appify
 
-osx-app: osx-tool build tidy
+osx-app: osx-tool
 	$(foreach file, $(wildcard $(CURDIR)/build/**/*), \
 		$(if $(shell grep ".app" "$(file)"), \
 			./appify -version $(VERSION) -name $(notdir $(file)) \
 				-author deflinhec -icon ./icon.png $(file); \
-			rm -rf $(file).app; \
+			rm -rf $(file).app; rm -rf $(file); \
 			mv $(notdir $(file)).app $(dir $(file)); \
 		,) \
 	)
@@ -69,5 +78,3 @@ arch-%: fmt assets tidy
 build: export CGO_ENABLED=1
 build: fmt assets tidy
 	go build -ldflags $(LDFLAGS) -o ./build/$(PLATFORM)/ ./cmd/...
-
-default: fmt build tidy
