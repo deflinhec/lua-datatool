@@ -95,6 +95,7 @@ func onOpenFile() {
 		Filter("Lua files", "lua").
 		Load()
 	if err != nil {
+		document = doc.NewDummy()
 		log.Printf("載入失敗: %v", err)
 		return
 	}

@@ -13,8 +13,6 @@ endif
 
 .PHONY: default build translate osx-app assets
 
-default: fmt build tidy
-
 fmt:
 	go fmt ./...
 
@@ -27,31 +25,35 @@ go-text:
 translate: go-text
 	go generate ./internal/translations/translations.go
 
-go-bindata:
+go-bindata: export GOBIN=$(CURDIR)
+go-bindata: 
 	go get -u github.com/go-bindata/go-bindata/...
 	go install -a -v github.com/go-bindata/go-bindata/...
 
 .PHONY: assets
 assets: go-bindata
 	git clean -xdff assets
-	go-bindata -nomemcopy -pkg=assets -o=assets/assets.go \
+	./go-bindata -nomemcopy -pkg=assets -o=assets/assets.go \
 		-debug=$(if $(findstring debug,$(BUILDTAGS)),true,false) \
 		-ignore=assets.go -ignore=init.go assets/...
+	rm -f ./go-bindata
 
 ifeq ($(PLATFORM),darwin)
-osx-tool:
+osx-tool: export GOBIN=$(CURDIR)
+osx-tool: 
 	go get github.com/machinebox/appify
 	go install -a -v github.com/machinebox/appify
 
 osx-app: osx-tool build tidy
 	$(foreach file, $(wildcard $(CURDIR)/build/**/*), \
 		$(if $(shell grep ".app" "$(file)"), \
-			appify -version $(VERSION) -name $(notdir $(file)) \
+			./appify -version $(VERSION) -name $(notdir $(file)) \
 				-author deflinhec -icon ./icon.png $(file); \
 			rm -rf $(file).app; \
 			mv $(notdir $(file)).app $(dir $(file)); \
 		,) \
 	)
+	rm -f ./appify
 endif
 
 # Sperate "linux-amd64" as GOOS and GOARCH
@@ -68,4 +70,4 @@ build: export CGO_ENABLED=1
 build: fmt assets tidy
 	go build -ldflags $(LDFLAGS) -o ./build/$(PLATFORM)/ ./cmd/...
 
-
+default: fmt build tidy
