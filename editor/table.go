@@ -30,7 +30,7 @@ func (v *TableWidget) Sync() {
 		widget := g.Widget(v.values[key])
 		if v.editable {
 			widget = g.Row(widget,
-				IndexImageButton("assets/bin.png").
+				IndexImageButton("bin.png").
 					Index(int32(i)).
 					OnClick(func(i int32) {
 						key = v.keys[i]
