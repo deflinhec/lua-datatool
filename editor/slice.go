@@ -25,7 +25,7 @@ func (v *SliceWidget) Sync() {
 		widget := g.Widget(v.values[i])
 		if v.editable {
 			widget = g.Row(widget,
-				IndexImageButton("assets/bin.png").
+				IndexImageButton("bin.png").
 					Index(int32(i)).
 					OnClick(func(i int32) {
 						v.values = v.values.Erase(int(i))
