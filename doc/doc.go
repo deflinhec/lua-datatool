@@ -114,6 +114,7 @@ func (f *File) Save() error {
 
 	body := formatter.Format(f.Field, f.Value,
 		formatter.KeySort(formatter.KeySortHashFnv64),
+		formatter.RootTrait(fmt.Sprintf("%v.%v", f.Namespace, f.Field)),
 	)
 	hash := md5.Sum([]byte(body))
 
