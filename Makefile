@@ -1,5 +1,5 @@
 # Define
-VERSION=0.3.2
+VERSION=0.4.0
 BUILD=$(shell git rev-parse HEAD)
 
 # Setup linker flags option for build that interoperate with variable names in src code
@@ -41,7 +41,7 @@ osx-tool:
 	go install -a -v github.com/machinebox/appify
 
 osx-app: osx-tool
-	$(foreach file, $(wildcard $(CURDIR)/build/**/*), \
+	$(foreach file, $(wildcard $(CURDIR)/build/**/datatool), \
 		$(if $(shell grep ".app" "$(file)"), \
 			./appify -version $(VERSION) -name $(notdir $(file)) \
 				-author deflinhec -icon ./icon.png $(file); \

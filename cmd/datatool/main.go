@@ -14,7 +14,7 @@ import (
 	gext "datatool.deflinhec.dev/internal/giuext"
 	g "github.com/AllenDang/giu"
 	"github.com/jessevdk/go-flags"
-	"github.com/sqweek/dialog"
+	"github.com/ncruces/zenity"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 
@@ -34,7 +34,7 @@ var opts struct {
 	Version func() `long:"version" short:"v" description:"檢視建置版號"`
 }
 
-var document doc.File
+var document *doc.File
 var widget editor.Widget
 var translator *message.Printer
 var languages = []string{"zh-TW", "zh-CN", "en-GB"}
@@ -91,11 +91,14 @@ func onDrop(names []string) {
 }
 
 func onOpenFile() {
-	filename, err := dialog.File().
-		Filter("Lua files", "lua").
-		Load()
+	filename, err := zenity.SelectFile(
+		zenity.Title("選擇檔案"),
+		zenity.FileFilter{
+			Name:     "Lua files",
+			Patterns: []string{"lua"},
+		},
+	)
 	if err != nil {
-		document = doc.NewDummy()
 		log.Printf("載入失敗: %v", err)
 		return
 	}
@@ -104,14 +107,7 @@ func onOpenFile() {
 
 func openFile(filename string) {
 	abspath, _ := filepath.Abs(filename)
-	file, err := doc.Open(abspath)
-	if err != nil {
-		g.Msgbox(translator.Sprintf("錯誤"),
-			translator.Sprintf("無法載入 %v", err)).
-			Buttons(g.MsgboxButtonsOk)
-		return
-	}
-	value, err := doc.Read(file)
+	file, err := doc.OpenFile(abspath)
 	if err != nil {
 		g.Msgbox(translator.Sprintf("錯誤"),
 			translator.Sprintf("無法載入 %v", err)).
@@ -120,7 +116,7 @@ func openFile(filename string) {
 	}
 	document = file
 	defer widget.Sync()
-	switch value := value.(type) {
+	switch value := document.Value.(type) {
 	case map[string]interface{}:
 		widget = editor.Scope().Values(value).Editable()
 	default:
@@ -130,7 +126,11 @@ func openFile(filename string) {
 }
 
 func onSaveFile() {
-	err := doc.Write(document, widget.Interface())
+	f := doc.File{
+		FileInfo: document.FileInfo,
+		Value:    widget.Interface(),
+	}
+	err := f.Save()
 	if err != nil {
 		g.Msgbox(translator.Sprintf("錯誤"),
 			translator.Sprintf("儲存失敗: %v", err)).
@@ -143,31 +143,28 @@ func onSaveFile() {
 }
 
 func onSaveNewFile() {
-	filename, err := dialog.File().
-		Filter(".lua", "lua").
-		Title(translator.Sprintf("另存新檔")).
-		SetStartFile(document.Field()).
-		Save()
-	if err != nil {
-		log.Println(translator.Sprintf("儲存失敗: %v", err))
+	filename, err := zenity.SelectFileSave(
+		zenity.Title(translator.Sprintf("另存新檔")),
+		zenity.FileFilter{
+			Name:     "Lua files",
+			Patterns: []string{"lua"},
+		},
+	)
+	switch err {
+	case nil:
 		return
+	case zenity.ErrCanceled:
+	default:
+		log.Println(translator.Sprintf("儲存失敗: %v", err))
 	}
 	abspath, _ := filepath.Abs(filename)
-	file, err := doc.Open(abspath, doc.WithDocument(document))
+	err = document.SaveTo(abspath)
 	if err != nil {
 		g.Msgbox(translator.Sprintf("錯誤"),
 			translator.Sprintf("儲存失敗: %v", err)).
 			Buttons(g.MsgboxButtonsOk)
 		return
 	}
-	err = doc.Write(file, widget.Interface())
-	if err != nil {
-		g.Msgbox(translator.Sprintf("錯誤"),
-			translator.Sprintf("儲存失敗: %v", err)).
-			Buttons(g.MsgboxButtonsOk)
-		return
-	}
-	document = file
 	g.Msgbox(translator.Sprintf("訊息"),
 		translator.Sprintf("儲存成功: %v", abspath)).
 		Buttons(g.MsgboxButtonsOk)
@@ -201,10 +198,10 @@ func loop() {
 				g.Condition(document != nil, g.Layout{
 					g.Custom(func() {
 						g.Row(
-							g.Label(translator.Sprintf("路徑：%v", document.Path())),
-							g.Label(translator.Sprintf("模塊：%v", document.Module())),
-							g.Label(translator.Sprintf("欄位：%v", document.Field())),
-							g.Label(fmt.Sprintf("md5：%v", document.Md5Sum())),
+							g.Label(translator.Sprintf("路徑：%v", document.Filename)),
+							g.Label(translator.Sprintf("模塊：%v", document.Namespace)),
+							g.Label(translator.Sprintf("欄位：%v", document.Field)),
+							g.Label(fmt.Sprintf("md5：%v", document.Md5Sum)),
 						).Build()
 					}),
 				}, g.Layout{}),

@@ -87,10 +87,10 @@ Field=
                 },
             },
             unorder={ -- Module.Field[2].array.unorder
-                [10]=false,
                 [21]="text1",
-                [82]=1,
+                [10]=false,
                 [88]=0.2,
+                [82]=1,
                 [-1]=true,
             },
         },

@@ -39,96 +39,98 @@ func init() {
 }
 
 var messageKeyToIndex = map[string]int{
-	"不支援 %v":    18,
-	"儲存":        11,
-	"儲存失敗: %v":  4,
-	"儲存成功":      6,
-	"儲存成功: %v":  8,
-	"副檔名不符":     1,
-	"取消":        27,
-	"另存新檔":      7,
-	"插入":        32,
-	"插入索引":      33,
-	"數值":        38,
-	"數值類型：":     22,
-	"新增":        23,
-	"新增欄位":      28,
-	"模塊：%v":     16,
-	"檔案":        9,
-	"檢索字元":      36,
-	"欄位":        39,
-	"欄位名稱不能為空":  25,
-	"欄位名稱重複":    26,
-	"欄位名稱：":     21,
-	"欄位：%v":     17,
-	"沒有數據":      20,
-	"無法載入 %v":   2,
-	"無法載入數據 %T": 19,
-	"移除":        29,
-	"移除欄位":      30,
-	"移除索引":      34,
-	"索引":        35,
-	"索引序次：":     31,
-	"編輯":        12,
-	"總計：%v":     37,
-	"訊息":        5,
-	"設定":        13,
-	"語系":        14,
-	"警告":        24,
-	"路徑：%v":     15,
-	"載入成功 %v":   3,
-	"錯誤":        0,
-	"開啟":        10,
+	"儲存":       11,
+	"儲存失敗: %v": 4,
+	"儲存成功":     6,
+	"儲存成功: %v": 8,
+	"副檔名不符":    1,
+	"取消":       22,
+	"另存新檔":     7,
+	"插入":       33,
+	"插入索引":     34,
+	"數值":       39,
+	"數值類型：":    24,
+	"新增":       25,
+	"新增欄位":     29,
+	"格式化檔案":    18,
+	"模塊：%v":    16,
+	"檔案":       9,
+	"檢索字元":     37,
+	"欄位":       40,
+	"欄位名稱不能為空": 27,
+	"欄位名稱重複":   28,
+	"欄位名稱：":    23,
+	"欄位：%v":    17,
+	"無法載入 %v":  2,
+	"確認":       21,
+	"移除":       30,
+	"移除欄位":     31,
+	"移除索引":     35,
+	"索引":       36,
+	"索引序次：":    32,
+	"編輯":       12,
+	"總計：%v":    38,
+	"覆寫原始檔案?":  20,
+	"訊息":       5,
+	"設定":       13,
+	"語系":       14,
+	"警告":       26,
+	"路徑：%v":    15,
+	"載入失敗: %v": 19,
+	"載入成功 %v":  3,
+	"錯誤":       0,
+	"開啟":       10,
 }
 
-var en_GBIndex = []uint32{ // 41 elements
+var en_GBIndex = []uint32{ // 42 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000006, 0x00000024, 0x00000037,
 	0x0000004a, 0x0000005c, 0x00000064, 0x00000071,
 	0x00000079, 0x0000008d, 0x00000092, 0x00000097,
 	0x0000009c, 0x000000a1, 0x000000a9, 0x000000b2,
-	0x000000bf, 0x000000ce, 0x000000dc, 0x000000ec,
-	0x00000108, 0x00000110, 0x0000011c, 0x00000127,
-	0x0000012b, 0x00000133, 0x0000014f, 0x00000165,
-	0x0000016c, 0x00000177, 0x0000017e, 0x0000018c,
+	0x000000bf, 0x000000ce, 0x000000dc, 0x000000ea,
+	0x000000fd, 0x0000011a, 0x00000122, 0x00000129,
+	0x00000135, 0x00000140, 0x00000144, 0x0000014c,
+	0x00000168, 0x0000017e, 0x00000189, 0x00000190,
 	// Entry 20 - 3F
-	0x00000192, 0x00000199, 0x000001a6, 0x000001b3,
-	0x000001b9, 0x000001c8, 0x000001d4, 0x000001da,
-	0x000001e1,
-} // Size: 188 bytes
+	0x0000019e, 0x000001a4, 0x000001ab, 0x000001b8,
+	0x000001c5, 0x000001cb, 0x000001da, 0x000001e6,
+	0x000001ec, 0x000001f3,
+} // Size: 192 bytes
 
-const en_GBData string = "" + // Size: 481 bytes
+const en_GBData string = "" + // Size: 499 bytes
 	"\x02Error\x02Non acceptable file extension\x02load failed: %[1]v\x02load" +
 	" success %[1]v\x02save failed %[1]v\x02Message\x02save success\x02Save T" +
 	"o\x02save success: %[1]v\x02File\x02Open\x02Save\x02Edit\x02Setting\x02L" +
-	"anguage\x02Path：%[1]v\x02Module：%[1]v\x02Field：%[1]v\x02unsupport %[1]v" +
-	"\x02cannot load data from %[1]T\x02no data\x02Column Name\x02Value Type" +
-	"\x02Add\x02Warning\x02Column name cannot be empty\x02Column name duplica" +
-	"te\x02Cancel\x02Add Column\x02Remove\x02Remove Column\x02Index\x02Insert" +
-	"\x02Insert Index\x02Remove Index\x02Index\x02Search by text\x02Sum：%[1]v" +
-	"\x02Value\x02Column"
+	"anguage\x02Path：%[1]v\x02Module：%[1]v\x02Field：%[1]v\x02File prettify" +
+	"\x02load failed: %[1]v\x02Overwrite the original file?\x02Confirm\x02Can" +
+	"cel\x02Column Name\x02Value Type\x02Add\x02Warning\x02Column name cannot" +
+	" be empty\x02Column name duplicate\x02Add Column\x02Remove\x02Remove Col" +
+	"umn\x02Index\x02Insert\x02Insert Index\x02Remove Index\x02Index\x02Searc" +
+	"h by text\x02Sum：%[1]v\x02Value\x02Column"
 
-var zh_CNIndex = []uint32{ // 41 elements
+var zh_CNIndex = []uint32{ // 42 elements
 	// Entry 0 - 1F
 	0x00000000, 0x00000007, 0x00000017, 0x0000002a,
 	0x0000003d, 0x00000051, 0x00000058, 0x00000065,
 	0x00000072, 0x00000086, 0x0000008d, 0x00000094,
 	0x0000009b, 0x000000a2, 0x000000a9, 0x000000b0,
 	0x000000bf, 0x000000ce, 0x000000dd, 0x000000ed,
-	0x00000106, 0x00000113, 0x00000123, 0x00000133,
-	0x0000013a, 0x00000141, 0x0000015a, 0x0000016d,
-	0x00000174, 0x00000181, 0x00000188, 0x00000195,
+	0x00000101, 0x00000115, 0x0000011c, 0x00000123,
+	0x00000133, 0x00000143, 0x0000014a, 0x00000151,
+	0x0000016a, 0x0000017d, 0x0000018a, 0x00000191,
 	// Entry 20 - 3F
-	0x000001a5, 0x000001ac, 0x000001b9, 0x000001c6,
-	0x000001cd, 0x000001da, 0x000001e9, 0x000001f0,
-	0x000001f7,
-} // Size: 188 bytes
+	0x0000019e, 0x000001ae, 0x000001b5, 0x000001c2,
+	0x000001cf, 0x000001d6, 0x000001e3, 0x000001f2,
+	0x000001f9, 0x00000200,
+} // Size: 192 bytes
 
-const zh_CNData string = "" + // Size: 503 bytes
+const zh_CNData string = "" + // Size: 512 bytes
 	"\x02错误\x02副档名不符\x02无法载入 %[1]v\x02载入成功 %[1]v\x02储存失败: %[1]v\x02讯息\x02储存成功" +
 	"\x02另存新档\x02储存成功: %[1]v\x02档案\x02开启\x02储存\x02编辑\x02设定\x02语系\x02路径：%[1]v" +
-	"\x02模块：%[1]v\x02栏位：%[1]v\x02不支援 %[1]v\x02无法载入数据 %[1]T\x02没有数据\x02栏位名称：" +
-	"\x02数值类型：\x02新增\x02警告\x02栏位名称不能为空\x02栏位名称重复\x02取消\x02新增栏位\x02移除\x02移除栏位" +
-	"\x02索引序次：\x02插入\x02插入索引\x02移除索引\x02索引\x02检索字元\x02总计：%[1]v\x02数值\x02栏位"
+	"\x02模块：%[1]v\x02栏位：%[1]v\x02格式化档案\x02载入失败: %[1]v\x02覆写原始档案?\x02确认\x02取消" +
+	"\x02栏位名称：\x02数值类型：\x02新增\x02警告\x02栏位名称不能为空\x02栏位名称重复\x02新增栏位\x02移除\x02移除" +
+	"栏位\x02索引序次：\x02插入\x02插入索引\x02移除索引\x02索引\x02检索字元\x02总计：%[1]v\x02数值\x02栏" +
+	"位"
 
-	// Total table size 1360 bytes (1KiB); checksum: 44804573
+	// Total table size 1395 bytes (1KiB); checksum: 186213ED
