@@ -117,32 +117,32 @@
             "translation": "语系"
         },
         {
-            "id": "路徑：{Path}",
-            "message": "路徑：{Path}",
-            "translation": "路径：{Path}",
+            "id": "路徑：{Filename}",
+            "message": "路徑：{Filename}",
+            "translation": "路径：{Filename}",
             "placeholders": [
                 {
-                    "id": "Path",
+                    "id": "Filename",
                     "string": "%[1]v",
                     "type": "string",
                     "underlyingType": "string",
                     "argNum": 1,
-                    "expr": "document.Path()"
+                    "expr": "document.Filename"
                 }
             ]
         },
         {
-            "id": "模塊：{Module}",
-            "message": "模塊：{Module}",
-            "translation": "模块：{Module}",
+            "id": "模塊：{Namespace}",
+            "message": "模塊：{Namespace}",
+            "translation": "模块：{Namespace}",
             "placeholders": [
                 {
-                    "id": "Module",
+                    "id": "Namespace",
                     "string": "%[1]v",
                     "type": "string",
                     "underlyingType": "string",
                     "argNum": 1,
-                    "expr": "document.Module()"
+                    "expr": "document.Namespace"
                 }
             ]
         },
@@ -157,44 +157,44 @@
                     "type": "string",
                     "underlyingType": "string",
                     "argNum": 1,
-                    "expr": "document.Field()"
+                    "expr": "document.Field"
                 }
             ]
         },
         {
-            "id": "不支援 {Extabspath}",
-            "message": "不支援 {Extabspath}",
-            "translation": "不支援 {Extabspath}",
+            "id": "格式化檔案",
+            "message": "格式化檔案",
+            "translation": "格式化档案"
+        },
+        {
+            "id": "載入失敗: {Err}",
+            "message": "載入失敗: {Err}",
+            "translation": "载入失败: {Err}",
             "placeholders": [
                 {
-                    "id": "Extabspath",
+                    "id": "Err",
                     "string": "%[1]v",
-                    "type": "string",
-                    "underlyingType": "string",
+                    "type": "error",
+                    "underlyingType": "interface{Error() string}",
                     "argNum": 1,
-                    "expr": "filepath.Ext(abspath)"
+                    "expr": "err"
                 }
             ]
         },
         {
-            "id": "無法載入數據 {Value}",
-            "message": "無法載入數據 {Value}",
-            "translation": "无法载入数据 {Value}",
-            "placeholders": [
-                {
-                    "id": "Value",
-                    "string": "%[1]T",
-                    "type": "interface{}",
-                    "underlyingType": "interface{}",
-                    "argNum": 1,
-                    "expr": "value"
-                }
-            ]
+            "id": "覆寫原始檔案?",
+            "message": "覆寫原始檔案?",
+            "translation": "覆写原始档案?"
         },
         {
-            "id": "沒有數據",
-            "message": "沒有數據",
-            "translation": "没有数据"
+            "id": "確認",
+            "message": "確認",
+            "translation": "确认"
+        },
+        {
+            "id": "取消",
+            "message": "取消",
+            "translation": "取消"
         },
         {
             "id": "欄位名稱：",
@@ -225,11 +225,6 @@
             "id": "欄位名稱重複",
             "message": "欄位名稱重複",
             "translation": "栏位名称重复"
-        },
-        {
-            "id": "取消",
-            "message": "取消",
-            "translation": "取消"
         },
         {
             "id": "新增欄位",
