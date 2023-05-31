@@ -41,7 +41,7 @@ osx-tool:
 	go install -a -v github.com/machinebox/appify
 
 osx-app: osx-tool
-	$(foreach file, $(wildcard $(CURDIR)/build/**/datatool), \
+	$(foreach file, $(wildcard $(CURDIR)/build/**/*), \
 		$(if $(shell grep ".app" "$(file)"), \
 			./appify -version $(VERSION) -name $(notdir $(file)) \
 				-author deflinhec -icon ./icon.png $(file); \
@@ -50,6 +50,11 @@ osx-app: osx-tool
 		,) \
 	)
 	rm -f ./appify
+
+osx-dmg:
+	$(foreach file, $(wildcard $(CURDIR)/build/**/*.app), \
+		create-dmg "$(basename $(file)).dmg" $(file); \
+	)
 endif
 
 # Sperate "linux-amd64" as GOOS and GOARCH
