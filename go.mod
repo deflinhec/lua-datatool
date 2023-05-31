@@ -1,4 +1,4 @@
-module datatool.deflinhec.dev
+module github.com/deflinhec/lua-datatool
 
 go 1.19
 
